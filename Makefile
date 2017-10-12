@@ -2,16 +2,18 @@
 
 PORTNAME=	buildkite-agent
 PORTVERSION=	3.0b32
-PORTREVISION=	1
+PORTREVISION=	3
 CATEGORIES=	devel sysutils
 
 MAINTAINER=	dch@skunkwerks.at
 COMMENT=	Cross-platform build runner to run your own build tasks
 
-LICENSE=	MIT BSD3CLAUSE APACHE20 LGPLV3 BSD2CLAUSE
+LICENSE=	MIT BSD3CLAUSE APACHE20 LGPL3 BSD2CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE.txt
+LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	go>=1.8:lang/go
+RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	buildkite
