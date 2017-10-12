@@ -2,7 +2,7 @@
 
 PORTNAME=	buildkite-agent
 PORTVERSION=	3.0b32
-PORTREVISION=	3
+PORTREVISION=	4
 CATEGORIES=	devel sysutils
 
 MAINTAINER=	dch@skunkwerks.at
@@ -32,6 +32,10 @@ SUB_FILES=	pkg-message
 post-patch:
 	@${REINPLACE_CMD} -e 's|/bin/bash|%%LOCALBASE%%/bin/bash|g' \
 			`${FIND} ${WRKSRC}/packaging/linux -type f`
+	@${REINPLACE_CMD} -e 's|/bin/bash|/usr/local/bin/bash|g' \
+			`${FIND} ${WRKSRC}/bootstrap/hook.go \
+			${WRKSRC}/bootstrap/bootstrap.go \
+			${WRKSRC}/bootstrap/shell/shell.go -type f`
 
 do-install:
 	${INSTALL_PROGRAM} \
