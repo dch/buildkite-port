@@ -38,9 +38,10 @@ command=/usr/sbin/daemon
 command_args="-t ${name} \
     -u ${buildkite_account} \
     -r -P ${pidfile} \
-    /usr/bin/env ${buildkite_vars} HOME=`pw usershow ${buildkite_account} | cut -d: -f9` \
+    /usr/bin/env ${buildkite_vars} \
+      HOME=`pw usershow ${buildkite_account} | cut -d: -f9` \
+      BUILDKITE_AGENT_TOKEN=${buildkite_token} \
     /usr/local/bin/buildkite-agent start \
-    --token ${buildkite_token} \
     --config ${buildkite_config} \
     ${buildkite_options}"
 
