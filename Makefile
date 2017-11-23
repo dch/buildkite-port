@@ -12,7 +12,6 @@ LICENSE_FILE=	${WRKSRC}/LICENSE.txt
 LICENSE_COMB=	multi
 
 BUILD_DEPENDS=	go>=1.9:lang/go
-RUN_DEPENDS=	${LOCALBASE}/bin/bash:shells/bash
 
 USE_GITHUB=	yes
 GH_ACCOUNT=	buildkite
