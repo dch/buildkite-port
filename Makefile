@@ -1,10 +1,11 @@
 # $FreeBSD$
 
 PORTNAME=	buildkite-agent
-PORTVERSION=	3.0b36
+DISTVERSIONPREFIX=	v
+DISTVERSION=	3.2.0
 CATEGORIES=	devel sysutils
 
-MAINTAINER=	dch@skunkwerks.at
+MAINTAINER=	dch@FreeBSD.org
 COMMENT=	Cross-platform build runner to run your own build tasks
 
 LICENSE=	MIT BSD3CLAUSE APACHE20 LGPL3 BSD2CLAUSE
@@ -16,7 +17,7 @@ BUILD_DEPENDS=	go>=1.9:lang/go
 USE_GITHUB=	yes
 GH_ACCOUNT=	buildkite
 GH_PROJECT=	agent
-GH_TAGNAME=	v3.0-beta.36
+#GH_TAGNAME=	v3.2.0
 
 USES=		go
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
