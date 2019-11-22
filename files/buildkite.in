@@ -29,7 +29,7 @@ load_rc_config $name
 : ${buildkite_enable=NO}
 : ${buildkite_logfile:=/var/log/buildkite.log}
 : ${buildkite_account:=nobody}
-: ${buildkite_config:="%%ETCDIR%%/buildkite-agent.cfg"}
+: ${buildkite_config:="/usr/local/etc/buildkite/buildkite-agent.cfg"}
 : ${buildkite_flags=""}
 : ${buildkite_options=""}
 : ${buildkite_vars=""}
@@ -39,12 +39,14 @@ command=/usr/sbin/daemon
 command_args="-t ${name} \
     -u ${buildkite_account} \
     -r -P ${pidfile} \
+    -o ${buildkite_logfile} \
     /usr/bin/env ${buildkite_vars} \
       HOME=`pw usershow ${buildkite_account} | cut -d: -f9` \
       BUILDKITE_AGENT_TOKEN=${buildkite_token} \
     /usr/local/bin/buildkite-agent start \
-    --config ${buildkite_config} \
-    ${buildkite_options}"
+      --config ${buildkite_config} \
+      --no-color \
+      ${buildkite_options}"
 
 required_files="${buildkite_config}"
 
