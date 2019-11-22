@@ -10,7 +10,7 @@ itself may launch.
 
 Note: the supplied user must have full filesystems permissions over its homedir.
 
-# %%PREFIX%%/rc.conf.d/buildkite
+# %%PREFIX%%/etc/rc.conf.d/buildkite
 # mandatory parameters
 buildkite_enable=YES
 buildkite_token=abc123456def
