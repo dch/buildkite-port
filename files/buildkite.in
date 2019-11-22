@@ -34,11 +34,13 @@ load_rc_config $name
 : ${buildkite_options=""}
 : ${buildkite_vars=""}
 
+sig_stop="INT"
+
 pidfile=/var/run/buildkite.pid
 command=/usr/sbin/daemon
 command_args="-t ${name} \
     -u ${buildkite_account} \
-    -r -P ${pidfile} \
+    -P ${pidfile} \
     -o ${buildkite_logfile} \
     /usr/bin/env ${buildkite_vars} \
       HOME=`pw usershow ${buildkite_account} | cut -d: -f9` \
@@ -49,5 +51,23 @@ command_args="-t ${name} \
       ${buildkite_options}"
 
 required_files="${buildkite_config}"
+
+_run_rc_killcmd()
+{
+    local _cmd
+    local _pid
+
+    # Terminate buildkite-agent by sending SIGINT to the child process to
+    # ensure it unregisters and disconnects, otherwise the agent will still
+    # be listed under the Agents tab.
+    _pid=$(pgrep -P ${rc_pid})
+    if [ -n "$_pid" ]; then
+        _cmd="kill -$1 $_pid"
+        if [ -n "$_user" ]; then
+            _cmd="su -m ${_user} -c 'sh -c \"${_cmd}\"'"
+        fi
+    fi
+    echo "$_cmd"
+}
 
 run_rc_command "$1"
