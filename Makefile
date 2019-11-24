@@ -2,7 +2,7 @@
 
 PORTNAME=	buildkite-agent
 DISTVERSIONPREFIX=	v
-DISTVERSION=	3.2.0
+DISTVERSION=	3.16.0
 CATEGORIES=	devel sysutils
 
 MAINTAINER=	dch@FreeBSD.org
@@ -17,7 +17,7 @@ BUILD_DEPENDS=	go>=1.9:lang/go
 USE_GITHUB=	yes
 GH_ACCOUNT=	buildkite
 GH_PROJECT=	agent
-#GH_TAGNAME=	v3.2.0
+#GH_TAGNAME=	v3.16.0
 
 USES=		go
 GO_PKGNAME=	github.com/${GH_ACCOUNT}/${GH_PROJECT}
